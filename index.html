@@ -16,9 +16,10 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/static/sitemap.xml">
 </head>
 <body class="bg-gray-100 font-sans min-h-screen flex flex-col">
-    <header class="bg-blue-600 text-white py-4 shadow-md">
-        <div class="container mx-auto px-4">
-            <h1 class="text-2xl font-bold">Agentti.NET</h1>
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 flex items-center space-x-4">
+            <img src="assets/img/logo-bg-transparent.png" alt="image" class="w-20">
+            <h1 class="text-2xl font-bold py-4">Agentti.NET</h1>
         </div>
     </header>
 
@@ -35,8 +36,9 @@
         <section id="header" class="relative mb-12">
             <div class="bg-blue-500 text-left py-40 bg-cover bg-center rounded-b-3xl" style="background: linear-gradient(135deg, #3700ff, #6f00ff, #9303f3);">
                 <h2 class="text-5xl text-white font-bold mb-2 ml-10">Agentti.NET</h2>
-                <p class="text-lg text-white mb-2 italic ml-10">Nopea, yksinkertainen, helppo</p>
+                <p class="text-lg text-white mb-2 italic ml-10">Valmistettu suossa, testattu suossa.</p>
                 <button class="bg-blue-600 text-white px-4 ml-10 py-2 rounded-md hover:bg-blue-700" onclick="window.location.href = '/projects'">Tutustu <i class="ri-arrow-right-double-line"></i></button>
+                <img src="assets/img/logo-bg-transparent.png" alt="image" class="w-80 absolute right-10 top-1/2 transform -translate-y-1/2">
             </div>
         </section>
 
@@ -59,8 +61,8 @@
         </section>
 
         <section id="goal" class="mb-12">
+            <h2 class="text-5xl text-center font-semibold text-gray-800 mb-10">Tavoitteemme...</h2>
             <div class="bg-white p-4 shadow-md rounded-3xl">
-                <h2 class="text-5xl font-semibold text-gray-800 mb-4 text-center">Tavoitteemme...</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                     <div>
                         <ul class="list-disc pl-5 text-gray-600 marker:text-blue-500">
@@ -115,7 +117,7 @@
 
         <section id="contact" class="mb-12">
             <h2 class="text-5xl text-center font-semibold text-gray-800 mb-10">Yhteydenotto</h2>
-            <form action="/send-email" method="POST" class="space-y-4 bg-white p-6 shadow-md rounded-lg sm:w-1/2 lg:w-1/3 mx-auto">
+            <form action="/send-email" method="POST" class="space-y-4 bg-white p-6 shadow-md rounded-3xl sm:w-1/2 lg:w-1/3 mx-auto">
                 <div>
                     <label for="name" class="block text-gray-700">Nimi</label>
                     <input type="text" id="name" name="name" class="w-full border border-gray-300 p-2 rounded-md" required>
@@ -130,17 +132,19 @@
                 </div>
                 <div>
                     <label for="message" class="block text-gray-700">Viesti</label>
-                    <textarea id="message" name="message" class="w-full border border-gray-300 p-2 rounded-md" rows="5" required></textarea>
+                    <textarea id="message" name="message" class="w-full min-h-24 max-h-80 border border-gray-300 p-2 rounded-md" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Lähetä</button>
+                <button type="submit" class="bg-blue-600 text-white w-full px-4 py-2 rounded-md hover:bg-blue-700">Lähetä</button>
             </form>
         </section>
 
         <hr class="border-t-2 border-gray-300 my-6 rounded-3xl">
 
         <section id="partners" class="mb-12">
-            <h2 class="text-5xl text-center font-semibold text-gray-800 mb-10">Tukemassa meitä:</h2>
-            <img src="https://cdn.bittivirta.fi/logo/logo.svg" alt="image" class="w-full h-full object-cover mb-4">
+            <h2 class="mb-10 font-semibold text-5xl text-center text-gray-800">Tukemassa meitä:</h2>
+            <div class="flex items-center justify-center flex-wrap gap-10 xl:gap-20 gap-y-5 xl:gap-y-6">
+                <img src="https://cdn.bittivirta.fi/logo/logo.svg" alt="image" class="mb-4 w-full object-contain max-w-[14rem] xl:max-w-[18rem] max-h-[3rem] xl:max-h-[4rem]">
+            </div>
         </section>
     </main>
 
