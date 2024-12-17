@@ -1,5 +1,5 @@
 {
-    "name": "agentti.net",
+    "name": "agentti/website",
     "description": "Nettisivut Pikkolan oppilasagenteille.",
     "type": "project",
     "require": {
