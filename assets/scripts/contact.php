@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <meta name="author" content="banskudansku.net">
     </head>
     <body>
-        <p class="text-5x text-center mb-2">Lomaketta ei lähetetty oikein. Palataan sivulle...</p>
+        <p class="text-5x text-center mt-8">Lomaketta ei lähetetty oikein. Palataan sivulle...</p>
     </body>
     <script>
         setTimeout(() => {
