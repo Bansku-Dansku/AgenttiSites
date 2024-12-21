@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "embeds" => [
             [
                 "title" => "Uusi yhteydenotto",
-                "color" => 5814783,
+                "color" => 220133,
                 "fields" => [
                     [
                         "name" => "Nimi",
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]
                 ],
                 "footer" => [
-                    "text" => "Lähetetty Agentti.NET-sivustolta",
+                    "text" => "Agentti.NET",
                 ],
                 "timestamp" => date("c")
             ]
@@ -55,11 +55,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_close($ch);
 
     if ($http_code === 204) {
-        echo "Viesti lähetetty onnistuneesti!";
+        echo "Viesti lähetetty onnistuneesti! Palataan sivulle...";
+        echo <<<HTML
+        <script>
+            setTimeout(() => {
+                window.location.href = '/'; 
+            }, 5000);
+        </script>
+        HTML;
     } else {
-        echo "Virhe viestiä lähetettäessä. Varmista webhook-URL.";
+        echo "Virhe viestiä lähetettäessä. Varmista kentät. Palataan sivulle...";
+        echo <<<HTML
+        <script>
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 5000); 
+        </script>
+        HTML;
     }
 } else {
-    echo "Lomaketta ei lähetetty oikein.";
+    echo "Lomaketta ei lähetetty oikein. Palataan sivulle...";
+    echo <<<HTML
+    <script>
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 5000); 
+    </script>
+    HTML;
 }
 ?>
