@@ -55,17 +55,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_close($ch);
 
     if ($http_code === 204) {
-        echo "Viesti lähetetty onnistuneesti! Palataan sivulle...";
         echo <<<HTML
+        <head>
+            <title>Lomake - Agentti.NET</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <meta name="author" content="banskudansku.net">
+        </head>
+        <body>
+            <p class="text-5xl text-center mt-8">Viesti lähetetty onnistuneesti! Palataan sivulle...</p>
+        </body>
         <script>
             setTimeout(() => {
-                window.location.href = '/'; 
-            }, 5000);
+                window.location.href = '/';
+            }, 5000); 
         </script>
         HTML;
     } else {
-        echo "Virhe viestiä lähetettäessä. Varmista kentät. Palataan sivulle...";
         echo <<<HTML
+        <head>
+            <title>Lomake - Agentti.NET</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <meta name="author" content="banskudansku.net">
+        </head>
+        <body>
+            <p class="text-5xl text-center mt-8">Virhe viestiä lähetettäessä. Varmista kentät. Palataan sivulle...</p>
+        </body>
         <script>
             setTimeout(() => {
                 window.location.href = '/';
@@ -81,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <meta name="author" content="banskudansku.net">
     </head>
     <body>
-        <p class="text-5x text-center mt-8">Lomaketta ei lähetetty oikein. Palataan sivulle...</p>
+        <p class="text-5xl text-center mt-8">Lomaketta ei lähetetty oikein. Palataan sivulle...</p>
     </body>
     <script>
         setTimeout(() => {
