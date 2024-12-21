@@ -1,4 +1,4 @@
 <?php
-header("Location: /status.agentti.net");
+header("Location: status.agentti.net");
 exit();
 ?>
