@@ -74,8 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         HTML;
     }
 } else {
-    echo "Lomaketta ei lähetetty oikein. Palataan sivulle...";
     echo <<<HTML
+    <head>
+        <title>Lomake - Agentti.NET</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta name="author" content="banskudansku.net">
+    </head>
+    <body>
+        <p class="text-5x text-center mb-2">Lomaketta ei lähetetty oikein. Palataan sivulle...</p>
+    </body>
     <script>
         setTimeout(() => {
             window.location.href = '/';
