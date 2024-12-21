@@ -1,23 +1,12 @@
 <?php
-require_once 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$webhook_url = "https://discord.com/api/webhooks/your-webhook-id/your-webhook-token";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Haetaan lomakkeen tiedot
-    $name = htmlspecialchars($_POST['name'] ?? '');
-    $email = htmlspecialchars($_POST['email'] ?? '');
-    $subject = htmlspecialchars($_POST['subject'] ?? '');
-    $message = htmlspecialchars($_POST['message'] ?? '');
-
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        die('Kaikki kentät ovat pakollisia!');
-    }
-
-    $webhookUrl = $_ENV['DISCORD_WEBHOOK_URL'] ?? '';
-    if (empty($webhookUrl)) {
-        die('Webhook URL puuttuu!');
-    }
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $subject = htmlspecialchars($_POST['subject']);
+    $message = htmlspecialchars($_POST['message']);
 
     $payload = json_encode([
         "embeds" => [
@@ -25,35 +14,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "title" => "Uusi yhteydenotto",
                 "color" => 5814783,
                 "fields" => [
-                    ["name" => "Nimi", "value" => $name, "inline" => true],
-                    ["name" => "Sähköposti", "value" => $email, "inline" => true],
-                    ["name" => "Aihe", "value" => $subject, "inline" => false],
-                    ["name" => "Viesti", "value" => $message, "inline" => false],
+                    [
+                        "name" => "Nimi",
+                        "value" => $name,
+                        "inline" => true
+                    ],
+                    [
+                        "name" => "Sähköposti",
+                        "value" => $email,
+                        "inline" => true
+                    ],
+                    [
+                        "name" => "Aihe",
+                        "value" => $subject,
+                        "inline" => false
+                    ],
+                    [
+                        "name" => "Viesti",
+                        "value" => $message,
+                        "inline" => false
+                    ]
                 ],
                 "footer" => [
-                    "text" => "Agentti.NET | " . date('Y-m-d H:i:s'),
+                    "text" => "Lähetetty Agentti.NET-sivustolta",
                 ],
-            ],
-        ],
+                "timestamp" => date("c")
+            ]
+        ]
     ]);
 
-    $ch = curl_init($webhookUrl);
+    $ch = curl_init($webhook_url);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     curl_close($ch);
 
-    if ($httpCode === 204) {
-        echo 'Viesti lähetetty onnistuneesti!';
+    if ($http_code === 204) {
+        echo "Viesti lähetetty onnistuneesti!";
     } else {
-        echo 'Viestin lähettäminen epäonnistui. Tarkista webhook URL.';
+        echo "Virhe viestiä lähetettäessä. Varmista webhook-URL.";
     }
 } else {
-    echo 'Virheellinen pyyntö.';
+    echo "Lomaketta ei lähetetty oikein.";
 }
 ?>
