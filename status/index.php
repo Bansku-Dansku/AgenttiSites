@@ -1,4 +1,7 @@
 <?php
-header("Location: https://status.agentti.net");
+
+$loc = "https://status.agentti.net/";
+header("Location: $loc");
 exit();
+
 ?>
